@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-export default function TodoForm({ onSubmit, edit }) {
-  const [input, setInput] = useState('')
+export default function TodoForm({ onSubmit, editTask }) {
+  const [input, setInput] = useState(editTask ? editTask.text : '')
 
   const handleInput = e => {
     e.preventDefault()
@@ -20,9 +20,9 @@ export default function TodoForm({ onSubmit, edit }) {
 
   return (
     <form className='Form' onSubmit={handleSubmit}>
-      {edit ? (
+      {editTask ? (
         <>
-          <input type='text' value={edit.text} onChange={handleInput} />
+          <input type='text' value={input} onChange={handleInput} />
           <button>Update</button>
         </>
       ) : (
