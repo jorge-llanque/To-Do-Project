@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.Todos__Item {
+  background-color: #7ddaff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 10px auto;
+  padding: 10px;
+  width: 300px;
+}
+.Options {
+  display: flex;
+}
