@@ -18,7 +18,7 @@ export default function TodoList({
     let newTask = {
       id: edit.id,
       text: task.text,
-      isCompleted: false,
+      category: 'todo',
     }
     updateTodo(newTask)
     setEdit(null)

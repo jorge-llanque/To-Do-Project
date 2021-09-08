@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import TodoListCompleted from './TodoListCompleted'
+import ListCategories from './CategoryTodos/ListCategories'
 
+const todoCategoryInitialize = ['Todo', 'Work', 'School']
 export default function Todos() {
   const [todo, setTodo] = useState([])
   const [todoCompleted, setTodoCompleted] = useState([])
+  const [todoCategory, setTodoCategory] = useState(todoCategoryInitialize)
 
   const addTodo = task => {
     setTodo([task, ...todo])
@@ -34,6 +37,7 @@ export default function Todos() {
         taskCompleted={taskCompleted}
       />
       {todoCompleted.length > 0 && <TodoListCompleted todos={todoCompleted} />}
+      <ListCategories todoCategories={todoCategory} />
     </main>
   )
 }
