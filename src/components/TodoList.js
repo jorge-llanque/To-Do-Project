@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TodoForm from './TodoForm'
 
-export default function TodoList({ todos, removeTodo, updateTodo }) {
+export default function TodoList({
+  todos,
+  removeTodo,
+  updateTodo,
+  taskCompleted,
+}) {
   const [edit, setEdit] = useState(null)
+  useEffect(() => {
+    console.log(todos)
+  })
 
   if (todos.length === 0) return <div>List empty</div>
 
   const updateTask = task => {
-    let newTask = { id: edit.id, text: task.text }
+    let newTask = {
+      id: edit.id,
+      text: task.text,
+      isCompleted: false,
+    }
     updateTodo(newTask)
     setEdit(null)
+  }
+
+  const handleIsComplete = idTask => {
+    taskCompleted(idTask)
   }
 
   return (
@@ -30,10 +46,9 @@ export default function TodoList({ todos, removeTodo, updateTodo }) {
                     Update
                   </button>
                   <button onClick={() => removeTodo(todo.id)}>Remove</button>
-                  <div>
-                    <input type='checkbox' id='complete' name='complete' />
-                    <label for='complete'>Complete?</label>
-                  </div>
+                  <button onClick={() => handleIsComplete(todo.id)}>
+                    Is Completed?
+                  </button>
                 </div>
               </div>
             ))}

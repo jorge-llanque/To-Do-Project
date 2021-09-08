@@ -13,6 +13,7 @@ export default function TodoForm({ onSubmit, editTask }) {
     let task = {
       id: Math.random(),
       text: input,
+      isCompleted: false,
     }
     onSubmit(task)
     setInput('')
