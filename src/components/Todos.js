@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import TodoListCompleted from './TodoListCompleted'
-import ListCategories from './CategoryTodos/ListCategories'
 import Category from './CategoryTodos/Category'
 
 const todoCategoryInitialize = ['Todo', 'Work', 'School']
@@ -34,7 +33,7 @@ export default function Todos() {
 
   return (
     <main>
-      <TodoForm onSubmit={addTodo} />
+      <TodoForm onSubmit={addTodo} categories={todoCategory} />
       <TodoList
         todos={todo}
         removeTodo={removeTodo}

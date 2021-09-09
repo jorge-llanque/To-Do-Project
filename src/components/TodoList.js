@@ -39,6 +39,7 @@ export default function TodoList({
               <div key={todo.id} className='Todos__Item'>
                 <p>{todo.text}</p>
                 <span>{todo.id}</span>
+                <span>{todo.category}</span>
                 <div className='Options'>
                   <button
                     onClick={() => setEdit({ id: todo.id, text: todo.text })}

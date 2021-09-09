@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 
-export default function TodoForm({ onSubmit, editTask }) {
+export default function TodoForm({ onSubmit, editTask, categories }) {
   const [input, setInput] = useState(editTask ? editTask.text : '')
+  const [category, setCategory] = useState('todo')
 
   const handleInput = e => {
     e.preventDefault()
     setInput(e.target.value)
+  }
+  const handleChangeCategory = e => {
+    setCategory(e.target.value)
   }
 
   const handleSubmit = e => {
@@ -13,10 +17,11 @@ export default function TodoForm({ onSubmit, editTask }) {
     let task = {
       id: Math.random(),
       text: input,
-      category: 'todo',
+      category: category,
     }
     onSubmit(task)
     setInput('')
+    setCategory('todo')
   }
 
   return (
@@ -34,6 +39,14 @@ export default function TodoForm({ onSubmit, editTask }) {
             value={input}
             onChange={handleInput}
           />
+          <div>
+            <label htmlFor='categoryTodo'>Select Category:</label>
+            <select id='categoryTodo' onChange={handleChangeCategory}>
+              {categories.map(category => (
+                <option key={category}>{category}</option>
+              ))}
+            </select>
+          </div>
           <button>Add</button>
         </>
       )}
