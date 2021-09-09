@@ -3,6 +3,7 @@ import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import TodoListCompleted from './TodoListCompleted'
 import ListCategories from './CategoryTodos/ListCategories'
+import Category from './CategoryTodos/Category'
 
 const todoCategoryInitialize = ['Todo', 'Work', 'School']
 export default function Todos() {
@@ -27,6 +28,10 @@ export default function Todos() {
     setTodo(newTodoList)
   }
 
+  const addCategory = category => {
+    setTodoCategory([category, ...todoCategory])
+  }
+
   return (
     <main>
       <TodoForm onSubmit={addTodo} />
@@ -37,7 +42,7 @@ export default function Todos() {
         taskCompleted={taskCompleted}
       />
       {todoCompleted.length > 0 && <TodoListCompleted todos={todoCompleted} />}
-      <ListCategories todoCategories={todoCategory} />
+      <Category categories={todoCategory} addCategory={addCategory} />
     </main>
   )
 }

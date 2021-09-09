@@ -1,10 +1,10 @@
 import React from 'react'
 
-function ListCategories({ todoCategories }) {
+function ListCategories({ categories }) {
   return (
     <>
-      <h2>Categories Todo</h2>
-      {todoCategories.map((category, index) => (
+      <h3>Categories Todo</h3>
+      {categories.map((category, index) => (
         <div key={index}>{category}</div>
       ))}
     </>
