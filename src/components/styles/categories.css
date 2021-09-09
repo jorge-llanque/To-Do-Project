@@ -2,3 +2,16 @@
   display: flex;
   justify-content: space-between;
 }
+.Categories__List {
+  column-gap: 5px;
+  display: flex;
+  margin: 0.5rem 0;
+}
+.Categories__Item {
+  width: 5rem;
+  background-color: #c92eff;
+  border-radius: 2px;
+  color: #fff;
+  padding: 3px 0;
+  text-align: center;
+}

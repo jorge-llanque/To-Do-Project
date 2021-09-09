@@ -1,0 +1,20 @@
+.Modal {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Modal__Content {
+  background-color: rgb(216, 216, 216);
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
+  padding: 10px 20px;
+  position: relative;
+}
