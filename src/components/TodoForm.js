@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function TodoForm({ onSubmit, editTask, categories }) {
   const [input, setInput] = useState(editTask ? editTask.text : '')
@@ -15,7 +16,7 @@ export default function TodoForm({ onSubmit, editTask, categories }) {
   const handleSubmit = e => {
     e.preventDefault()
     let task = {
-      id: Math.random(),
+      id: uuidv4(),
       text: input,
       category: category,
     }
