@@ -1,0 +1,23 @@
+.Todo {
+  background-color: var(--color-background);
+  border-radius: 20px;
+  min-height: 80vh;
+  padding: 2rem 0.5rem;
+  width: 90vw;
+}
+.Todo__Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.Todo__Container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.Todo__Container-Categories,
+.Todo__Container-Completed,
+.Todo__Container-Main {
+  width: 100%;
+}

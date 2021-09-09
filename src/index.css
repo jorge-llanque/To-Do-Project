@@ -6,6 +6,7 @@
 :root {
   --color-background: #ffffff;
   --color-text-default: #1d2d65;
+  --color-back-icon: #e6e9f3;
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,11 +14,31 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-background);
+  background: linear-gradient(
+    90deg,
+    rgba(254, 6, 60, 1) 0%,
+    rgba(243, 177, 26, 1) 47%,
+    rgba(8, 153, 242, 1) 97%
+  );
+  object-fit: cover;
+  width: 100vw;
   color: var(--color-text-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h2 {
+  font-size: 1.4rem;
+}
+i {
+  color: var(--color-text-default);
+  background-color: var(--color-back-icon);
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

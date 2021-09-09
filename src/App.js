@@ -4,11 +4,9 @@ import { TodosContextProvider } from './context/TodosContext'
 
 function App() {
   return (
-    <div className='App'>
-      <TodosContextProvider>
-        <Todos />
-      </TodosContextProvider>
-    </div>
+    <TodosContextProvider>
+      <Todos />
+    </TodosContextProvider>
   )
 }
 

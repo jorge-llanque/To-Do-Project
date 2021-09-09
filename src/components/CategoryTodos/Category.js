@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import ListCategories from './ListCategories'
+import { BiPlus } from 'react-icons/bi'
+import '../styles/categories.css'
 
 export default function Category({ categories, addCategory }) {
   const [input, setInput] = useState('')
@@ -15,7 +17,12 @@ export default function Category({ categories, addCategory }) {
   }
   return (
     <div>
-      <h2>CATEGORIES</h2>
+      <title className='Categories__Title'>
+        <h2>Categories</h2>
+        <i>
+          <BiPlus />
+        </i>
+      </title>
       <form onSubmit={handleSubmit}>
         <input
           type='text'
