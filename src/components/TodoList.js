@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import useTodo from '../hooks/useTodo'
 import TodoForm from './TodoForm'
 
-export default function TodoList({
-  todos,
-  removeTodo,
-  updateTodo,
-  taskCompleted,
-}) {
+export default function TodoList() {
+  const { todoList } = useTodo()
   const [edit, setEdit] = useState(null)
-  useEffect(() => {
-    console.log(todos)
-  })
 
-  if (todos.length === 0) return <div>List empty</div>
+  if (todoList.length === 0) return <div>List empty</div>
 
   const updateTask = task => {
     let newTask = {
@@ -20,13 +14,11 @@ export default function TodoList({
       text: task.text,
       category: 'todo',
     }
-    updateTodo(newTask)
+
     setEdit(null)
   }
 
-  const handleIsComplete = idTask => {
-    taskCompleted(idTask)
-  }
+  const handleIsComplete = idTask => {}
 
   return (
     <>
@@ -35,7 +27,7 @@ export default function TodoList({
       ) : (
         <section className='Todos'>
           <div className='Todos__List'>
-            {todos.map(todo => (
+            {todoList.map(todo => (
               <div key={todo.id} className='Todos__Item'>
                 <p>{todo.text}</p>
                 <span>{todo.id}</span>
@@ -46,7 +38,7 @@ export default function TodoList({
                   >
                     Update
                   </button>
-                  <button onClick={() => removeTodo(todo.id)}>Remove</button>
+                  <button>Remove</button>
                   <button onClick={() => handleIsComplete(todo.id)}>
                     Is Completed?
                   </button>
