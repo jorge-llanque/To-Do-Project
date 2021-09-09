@@ -1,9 +1,9 @@
 import React from 'react'
-import useTodos from '../hooks/useTodos'
+import useTasks from '../hooks/useTasks'
 const Context = React.createContext({})
 
 export function TodosContextProvider({ children }) {
-  const { todoList, addTask, updateTask, removeTask } = useTodos()
+  const { todoList, addTask, updateTask, removeTask } = useTasks()
   return (
     <Context.Provider value={{ todoList, addTask, updateTask, removeTask }}>
       {children}

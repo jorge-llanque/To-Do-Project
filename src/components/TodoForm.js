@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import useTodo from '../hooks/useTodo'
+import useTodos from '../hooks/useTodos'
 
-export default function TodoForm({ editTask, categories }) {
+export default function TodoForm({ editTask, onSubmit, categories }) {
   const [input, setInput] = useState(editTask ? editTask.text : '')
   const [category, setCategory] = useState('todo')
-  const { addTask } = useTodo()
+  const { addTask } = useTodos()
 
   const handleInput = e => {
     e.preventDefault()

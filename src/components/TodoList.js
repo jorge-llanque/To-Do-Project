@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import useTodo from '../hooks/useTodo'
+import useTodos from '../hooks/useTodos'
 import TodoForm from './TodoForm'
 
 export default function TodoList() {
-  const { todoList } = useTodo()
+  const { todoList, removeTask } = useTodos()
   const [edit, setEdit] = useState(null)
 
   if (todoList.length === 0) return <div>List empty</div>
@@ -18,6 +18,10 @@ export default function TodoList() {
     setEdit(null)
   }
 
+  const handleDeleteTask = idTask => {
+    console.log(idTask)
+    removeTask(idTask)
+  }
   const handleIsComplete = idTask => {}
 
   return (
@@ -38,7 +42,9 @@ export default function TodoList() {
                   >
                     Update
                   </button>
-                  <button>Remove</button>
+                  <button onClick={() => handleDeleteTask(todo.id)}>
+                    Remove
+                  </button>
                   <button onClick={() => handleIsComplete(todo.id)}>
                     Is Completed?
                   </button>
