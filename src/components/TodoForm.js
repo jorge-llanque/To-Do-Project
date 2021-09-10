@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import useTodos from '../hooks/useTodos'
 
-export default function TodoForm({ editTask, onSubmit, categories }) {
+export default function TodoForm({ editTask, onClose }) {
   const [input, setInput] = useState(editTask ? editTask.text : '')
   const [category, setCategory] = useState('todo')
   const { addTask, todoCategory } = useTodos()
@@ -25,6 +25,7 @@ export default function TodoForm({ editTask, onSubmit, categories }) {
     addTask(task)
     setInput('')
     setCategory('todo')
+    onClose()
   }
 
   return (
