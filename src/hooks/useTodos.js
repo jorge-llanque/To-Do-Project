@@ -11,8 +11,8 @@ export default function useTodos() {
     setTodoCategory,
   } = useContext(TodosContext)
 
-  const addCategory = category => {
-    setTodoCategory([category, ...todoCategory])
+  const addCategory = value => {
+    setTodoCategory([value.category, ...todoCategory])
   }
   return {
     todoList,

@@ -4,22 +4,11 @@ import { BiPlus } from 'react-icons/bi'
 import Modal from '../Modal'
 import useTodos from '../../hooks/useTodos'
 import '../styles/categories.css'
+import CategoryForm from './CategoryForm'
 
 export default function Category() {
-  const [input, setInput] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const { addCategory } = useTodos()
 
-  const handleChange = e => {
-    e.preventDefault()
-    setInput(e.target.value)
-  }
-  const handleSubmit = e => {
-    e.preventDefault()
-    addCategory(input)
-    setInput('')
-    setShowModal(false)
-  }
   const handleShowModal = () => {
     setShowModal(true)
   }
@@ -35,15 +24,7 @@ export default function Category() {
         </button>
         {showModal && (
           <Modal onClose={handleCloseModal}>
-            <form onSubmit={handleSubmit}>
-              <input
-                type='text'
-                placeholder='Add category'
-                onChange={handleChange}
-                value={input}
-              />
-              <button>Add</button>
-            </form>
+            <CategoryForm onClose={handleCloseModal} />
           </Modal>
         )}
       </header>
