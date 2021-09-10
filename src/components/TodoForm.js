@@ -5,7 +5,7 @@ import useTodos from '../hooks/useTodos'
 export default function TodoForm({ editTask, onSubmit, categories }) {
   const [input, setInput] = useState(editTask ? editTask.text : '')
   const [category, setCategory] = useState('todo')
-  const { addTask } = useTodos()
+  const { addTask, todoCategory } = useTodos()
 
   const handleInput = e => {
     e.preventDefault()
@@ -45,7 +45,7 @@ export default function TodoForm({ editTask, onSubmit, categories }) {
           <div>
             <label htmlFor='categoryTodo'>Select Category:</label>
             <select id='categoryTodo' onChange={handleChangeCategory}>
-              {categories.map(category => (
+              {todoCategory.map(category => (
                 <option key={category}>{category}</option>
               ))}
             </select>

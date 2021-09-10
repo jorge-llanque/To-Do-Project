@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import ListCategories from './ListCategories'
 import { BiPlus } from 'react-icons/bi'
-import '../styles/categories.css'
 import Modal from '../Modal'
+import useTodos from '../../hooks/useTodos'
+import '../styles/categories.css'
 
-export default function Category({ categories, addCategory }) {
+export default function Category() {
   const [input, setInput] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const { addCategory } = useTodos()
 
   const handleChange = e => {
     e.preventDefault()
@@ -18,21 +20,21 @@ export default function Category({ categories, addCategory }) {
     setInput('')
     setShowModal(false)
   }
-  const handleCreateCategory = () => {
+  const handleShowModal = () => {
     setShowModal(true)
   }
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setShowModal(false)
   }
   return (
     <div>
       <header className='Title'>
         <h2>Categories</h2>
-        <button className='Icon' onClick={handleCreateCategory}>
+        <button className='Icon' onClick={handleShowModal}>
           <BiPlus />
         </button>
         {showModal && (
-          <Modal onClose={handleClose}>
+          <Modal onClose={handleCloseModal}>
             <form onSubmit={handleSubmit}>
               <input
                 type='text'
@@ -45,7 +47,7 @@ export default function Category({ categories, addCategory }) {
           </Modal>
         )}
       </header>
-      <ListCategories categories={categories} />
+      <ListCategories />
     </div>
   )
 }

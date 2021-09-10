@@ -1,6 +1,7 @@
 import React from 'react'
 
-function TodoListCompleted({ todos }) {
+function TodoListCompleted() {
+  const todos = []
   return (
     <div>
       <header>
