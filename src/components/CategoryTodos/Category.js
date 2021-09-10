@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import ListCategories from './ListCategories'
 import { BiPlus } from 'react-icons/bi'
 import Modal from '../Modal'
-import useTodos from '../../hooks/useTodos'
 import '../styles/categories.css'
 import CategoryForm from './CategoryForm'
 

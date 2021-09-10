@@ -19,13 +19,20 @@ export default function CategoryForm({ onClose }) {
           addCategory(values)
           setSubmitting(false)
           onClose()
-        }, 3000)
+        }, 400)
       }}
     >
-      <Form>
-        <Field type='text' name='category' placeholder='Add category' />
+      <Form className='CategoryForm__Form'>
+        <Field
+          type='text'
+          name='category'
+          placeholder='Add category'
+          className='CategoryForm__Input'
+        />
         <ErrorMessage name='category' />
-        <button type='submit'>Add</button>
+        <button type='submit' className='CategoryForm__SubmitButton'>
+          Add
+        </button>
       </Form>
     </Formik>
   )
