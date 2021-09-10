@@ -34,9 +34,8 @@ export default function TodoList() {
           <div className='Todos__List'>
             {todoList.map(todo => (
               <div key={todo.id} className='Todos__Item'>
-                <p>{todo.task}</p>
-                <span>{todo.id}</span>
-                <span>{todo.category}</span>
+                <p className='Todos__Item-Task'>{todo.task}</p>
+                <span className='Todos__Item-Category'>{todo.category}</span>
                 <div className='Options'>
                   <button
                     onClick={() => setEdit({ id: todo.id, text: todo.text })}

@@ -9,7 +9,7 @@
 }
 .Categories__Item {
   width: 5rem;
-  background-color: #c92eff;
+  background-color: #e08cff;
   border-radius: 2px;
   color: #fff;
   padding: 3px 0;
@@ -46,4 +46,17 @@
   font-size: 1.4rem;
 
   text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+  .Categories__List {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .Categories__Item {
+    border-radius: 0.5rem;
+    width: 15rem;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+  }
 }
