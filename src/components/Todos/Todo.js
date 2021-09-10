@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
 import Modal from '../Modal'
-import TodoForm from '../TodoForm'
-import TodoList from '../TodoList'
+import TodoForm from './TodoForm'
+import TodoList from './TodoList'
 
 export default function Todo() {
   const [showModal, setShowModal] = useState(false)

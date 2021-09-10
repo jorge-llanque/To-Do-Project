@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import useTodos from '../hooks/useTodos'
+import useTodos from '../../hooks/useTodos'
 import TodoForm from './TodoForm'
-import './styles/todos.css'
+import '../styles/todos.css'
 
 export default function TodoList() {
   const { todoList, removeTask } = useTodos()
@@ -34,7 +34,7 @@ export default function TodoList() {
           <div className='Todos__List'>
             {todoList.map(todo => (
               <div key={todo.id} className='Todos__Item'>
-                <p>{todo.text}</p>
+                <p>{todo.task}</p>
                 <span>{todo.id}</span>
                 <span>{todo.category}</span>
                 <div className='Options'>

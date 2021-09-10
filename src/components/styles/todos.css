@@ -24,3 +24,46 @@
 .Todo__List {
   height: 200px;
 }
+.TodoForm__Form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 2rem 0;
+}
+.TodoForm__Task {
+  background-color: #8d46bd;
+  height: 30px;
+  padding: 0 5px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  letter-spacing: 2px;
+  outline: none;
+}
+.TodoForm__Task::placeholder {
+  color: rgb(179, 179, 179);
+  opacity: 0.6;
+}
+.TodoForm__Label {
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-right: 4px;
+}
+.TodoForm__Category {
+  width: 100px;
+  background-color: #5aaeff;
+  border: none;
+  outline: none;
+}
+.TodoForm__SubmitButton {
+  background-color: #ffec40;
+  border: none;
+  height: 30px;
+  width: 100px;
+  margin: 10px auto;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
