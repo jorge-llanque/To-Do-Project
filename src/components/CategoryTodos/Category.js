@@ -26,12 +26,9 @@ export default function Category({ categories, addCategory }) {
   }
   return (
     <div>
-      <title className='Categories__Title'>
+      <header className='Title'>
         <h2>Categories</h2>
-        <button
-          className='Categories__AddIcon Icon'
-          onClick={handleCreateCategory}
-        >
+        <button className='Icon' onClick={handleCreateCategory}>
           <BiPlus />
         </button>
         {showModal && (
@@ -47,7 +44,7 @@ export default function Category({ categories, addCategory }) {
             </form>
           </Modal>
         )}
-      </title>
+      </header>
       <ListCategories categories={categories} />
     </div>
   )

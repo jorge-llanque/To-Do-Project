@@ -48,3 +48,8 @@ h2 {
   align-items: center;
   cursor: pointer;
 }
+.Title {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}

@@ -2,7 +2,7 @@
   background-color: var(--color-background);
   border-radius: 20px;
   min-height: 80vh;
-  padding: 2rem 0.5rem;
+  padding: 2rem 1rem;
   width: 90vw;
 }
 .Todo__Header {
@@ -20,4 +20,7 @@
 .Todo__Container-Completed,
 .Todo__Container-Main {
   width: 100%;
+}
+.Todo__List {
+  min-height: 200px;
 }

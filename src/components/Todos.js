@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import TodoForm from './TodoForm'
-import TodoList from './TodoList'
 import TodoListCompleted from './TodoListCompleted'
 import Category from './CategoryTodos/Category'
 import './styles/todos.css'
+import Todo from './Todos/Todo'
 const todoCategoryInitialize = ['Todo', 'Work', 'School']
 export default function Todos() {
   const [todo, setTodo] = useState([])
@@ -31,6 +30,9 @@ export default function Todos() {
     setTodoCategory([category, ...todoCategory])
   }
 
+  /* <TodoForm categories={todoCategory} />
+          <TodoList /> */
+
   return (
     <main className='Todo'>
       <header className='Todo__Header'>
@@ -42,15 +44,10 @@ export default function Todos() {
           <Category categories={todoCategory} addCategory={addCategory} />
         </section>
         <section className='Todo__Container-Main'>
-          <h2>To Do</h2>
-          <TodoForm categories={todoCategory} />
-          <TodoList />
+          <Todo />
         </section>
         <section className='Todo__Container-Completed'>
-          <h2>Completed</h2>
-          {todoCompleted.length > 0 && (
-            <TodoListCompleted todos={todoCompleted} />
-          )}
+          <TodoListCompleted todos={todoCompleted} />
         </section>
       </div>
     </main>

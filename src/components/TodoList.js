@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import useTodos from '../hooks/useTodos'
 import TodoForm from './TodoForm'
+import './styles/todos.css'
 
 export default function TodoList() {
   const { todoList, removeTask } = useTodos()
   const [edit, setEdit] = useState(null)
 
-  if (todoList.length === 0) return <div>List empty</div>
+  if (todoList.length === 0) return <div className='Todo__List'>List empty</div>
 
   const updateTask = task => {
     let newTask = {
@@ -25,7 +26,7 @@ export default function TodoList() {
   const handleIsComplete = idTask => {}
 
   return (
-    <>
+    <div className='Todo__List-Container'>
       {edit ? (
         <TodoForm editTask={edit} onSubmit={updateTask} />
       ) : (
@@ -54,6 +55,6 @@ export default function TodoList() {
           </div>
         </section>
       )}
-    </>
+    </div>
   )
 }
