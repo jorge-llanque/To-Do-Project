@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { RiCloseFill } from 'react-icons/ri'
 import './styles/modal.css'
 
 function Modal({ children, onClose }) {
   return (
     <div className='Modal'>
       <div className='Modal__Content'>
-        <button onClick={onClose}>X</button>
+        <button onClick={onClose} className='CloseModalIcon Icon'>
+          <RiCloseFill />
+        </button>
         {children}
       </div>
     </div>
