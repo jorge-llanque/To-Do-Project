@@ -48,6 +48,9 @@ h2 {
   align-items: center;
   cursor: pointer;
 }
+.Icon:hover {
+  background-color: #cbced8;
+}
 .Title {
   display: flex;
   justify-content: space-between;

@@ -14,16 +14,26 @@ export default function useTodos() {
 
   const addCategory = value => {
     setTodoCategory([value.category, ...todoCategory])
+    window.localStorage.setItem('todoCategory', [
+      value.category,
+      ...todoCategory,
+    ])
   }
   const newTask = obj => {
     addTask({ id: uuidv4(), ...obj })
   }
+
+  const toArray = data => data.split(',')
+  const listCategory = window.localStorage.getItem('todoCategory')
+    ? toArray(window.localStorage.getItem('todoCategory'))
+    : todoCategory
+
   return {
     todoList,
     newTask,
     updateTask,
     removeTask,
     addCategory,
-    todoCategory,
+    listCategory,
   }
 }

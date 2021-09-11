@@ -6,7 +6,7 @@ import './styles/todos.css'
 
 export default function Todos() {
   return (
-    <main className='Todo'>
+    <main id='main-contain' className='Todo'>
       <header className='Todo__Header'>
         <h1>
           <strong>

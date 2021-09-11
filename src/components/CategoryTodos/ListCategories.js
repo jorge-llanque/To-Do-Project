@@ -4,21 +4,19 @@ import { ImPencil2 } from 'react-icons/im'
 import { RiDeleteBin4Line } from 'react-icons/ri'
 
 function ListCategories() {
-  const { todoCategory } = useTodos()
-  if (todoCategory.length === 0) return <div>List empty</div>
+  const { listCategory } = useTodos()
+  if (listCategory.length === 0) return <div>List empty</div>
 
   const getFirstCharacter = word => word.charAt(0)
   return (
     <div className='Categories__List'>
-      {todoCategory.map((category, index) => (
-        <div className='Categories__Item'>
+      {listCategory.map((category, index) => (
+        <div className='Categories__Item' key={index}>
           <div>
             <span className='Categories__Item-Char'>
               {getFirstCharacter(category)}
             </span>
-            <span key={index} className='Categories__Item-Word'>
-              {category}
-            </span>
+            <span className='Categories__Item-Word'>{category}</span>
           </div>
           <div className='Categories__Item-Options'>
             <button>

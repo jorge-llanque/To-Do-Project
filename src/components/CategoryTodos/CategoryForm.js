@@ -11,7 +11,7 @@ export default function CategoryForm({ onClose }) {
       initialValues={{ category: '' }}
       validationSchema={Yup.object({
         category: Yup.string()
-          .max(20, 'Must be 20 characters or less')
+          .max(12, 'Must be 12 characters or less')
           .required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
