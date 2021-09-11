@@ -7,10 +7,11 @@ import { RiDeleteBin4Line } from 'react-icons/ri'
 import '../styles/todos.css'
 
 export default function TodoList() {
-  const { todoList, removeTask } = useTodos()
+  const { getListTodo, removeTask } = useTodos()
   const [edit, setEdit] = useState(null)
 
-  if (todoList.length === 0) return <div className='Todo__List'>List empty</div>
+  if (getListTodo.length === 0)
+    return <div className='Todo__List'>List empty</div>
 
   const updateTask = task => {
     let newTask = {
@@ -35,9 +36,9 @@ export default function TodoList() {
       ) : (
         <section className='Todos'>
           <div className='Todos__List'>
-            {todoList.map(todo => (
-              <div className='Todos__Item-cover'>
-                <div key={todo.id} className='Todos__Item'>
+            {getListTodo.map(todo => (
+              <div key={todo.id} className='Todos__Item-cover'>
+                <div className='Todos__Item'>
                   <div className='Todos__Item-Contain'>
                     <div className='Options-Actions'>
                       <button
