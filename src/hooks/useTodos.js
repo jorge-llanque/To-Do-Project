@@ -13,19 +13,32 @@ export default function useTodos() {
   } = useContext(TodosContext)
 
   const addCategory = value => {
-    setTodoCategory([value.category, ...todoCategory])
-    window.localStorage.setItem('todoCategory', [
-      value.category,
-      ...todoCategory,
-    ])
+    const newValue = {
+      id: uuidv4(),
+      ...value,
+    }
+    setTodoCategory([newValue, ...todoCategory])
+    window.localStorage.setItem(
+      'todoCategory',
+      JSON.stringify([newValue, ...todoCategory])
+    )
+  }
+  const updateCategory = value => {
+    const newList = todoCategory.map(obj => (obj.id === value.id ? value : obj))
+    setTodoCategory(newList)
+    window.localStorage.setItem('todoCategory', newList)
   }
   const newTask = obj => {
     addTask({ id: uuidv4(), ...obj })
   }
 
-  const toArray = data => data.split(',')
+  const getCategoriesToLocalStorage = key => {
+    // const toArray = data => data.split(',')
+    const data = window.localStorage.getItem(key)
+    return JSON.parse(data)
+  }
   const listCategory = window.localStorage.getItem('todoCategory')
-    ? toArray(window.localStorage.getItem('todoCategory'))
+    ? getCategoriesToLocalStorage('todoCategory')
     : todoCategory
 
   return {
@@ -35,5 +48,6 @@ export default function useTodos() {
     removeTask,
     addCategory,
     listCategory,
+    updateCategory,
   }
 }

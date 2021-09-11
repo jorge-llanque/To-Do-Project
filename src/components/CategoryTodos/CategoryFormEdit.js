@@ -3,20 +3,20 @@ import useTodos from '../../hooks/useTodos'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
-export default function CategoryForm({ onClose }) {
-  const { addCategory } = useTodos()
+export default function CategoryFormEdit({ onClose, categoryToEdit }) {
+  const { updateCategory } = useTodos()
 
   return (
     <Formik
-      initialValues={{ text: '' }}
+      initialValues={{ category: categoryToEdit }}
       validationSchema={Yup.object({
-        text: Yup.string()
+        category: Yup.string()
           .max(12, 'Must be 12 characters or less')
           .required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          addCategory(values)
+          updateCategory(values)
           setSubmitting(false)
           onClose()
         }, 400)
@@ -25,11 +25,11 @@ export default function CategoryForm({ onClose }) {
       <Form className='CategoryForm__Form'>
         <Field
           type='text'
-          name='text'
+          name='category'
           placeholder='Add category'
           className='CategoryForm__Input'
         />
-        <ErrorMessage name='text' />
+        <ErrorMessage name='category' />
         <button type='submit' className='CategoryForm__SubmitButton'>
           Add
         </button>
