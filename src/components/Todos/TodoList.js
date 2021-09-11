@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import useTodos from '../../hooks/useTodos'
 import TodoForm from './TodoForm'
+import { BsSquare } from 'react-icons/bs'
+import { ImPencil2 } from 'react-icons/im'
+import { RiDeleteBin4Line } from 'react-icons/ri'
 import '../styles/todos.css'
 
 export default function TodoList() {
@@ -35,21 +38,30 @@ export default function TodoList() {
             {todoList.map(todo => (
               <div className='Todos__Item-cover'>
                 <div key={todo.id} className='Todos__Item'>
-                  <p className='Todos__Item-Task'>{todo.task}</p>
-                  <span className='Todos__Item-Category'>{todo.category}</span>
-                  <div className='Options'>
-                    <button
-                      onClick={() => setEdit({ id: todo.id, text: todo.text })}
-                    >
-                      Update
-                    </button>
-                    <button onClick={() => handleDeleteTask(todo.id)}>
-                      Remove
-                    </button>
-                    <button onClick={() => handleIsComplete(todo.id)}>
-                      Is Completed?
-                    </button>
+                  <div className='Todos__Item-Contain'>
+                    <div className='Options-Actions'>
+                      <button
+                        onClick={() =>
+                          setEdit({ id: todo.id, text: todo.text })
+                        }
+                      >
+                        <ImPencil2 />
+                      </button>
+                      <button onClick={() => handleDeleteTask(todo.id)}>
+                        <RiDeleteBin4Line />
+                      </button>
+                    </div>
+                    <p className='Todos__Item-Task'>{todo.task}</p>
+                    <span className='Todos__Item-Category'>
+                      {todo.category}
+                    </span>
                   </div>
+                  <button
+                    onClick={() => handleIsComplete(todo.id)}
+                    className='Options-SelectInput'
+                  >
+                    <BsSquare />
+                  </button>
                 </div>
               </div>
             ))}

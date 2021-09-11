@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import useTodos from '../../hooks/useTodos'
 import { ErrorMessage, Field, Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import '../styles/todos.css'
 
-export default function TodoForm({ editTask, onClose }) {
-  const { newTask, todoCategory } = useTodos()
+export default function TodoForm({ onClose }) {
+  const { newTask, listCategory } = useTodos()
 
   return (
     <Formik
@@ -20,7 +19,10 @@ export default function TodoForm({ editTask, onClose }) {
           .max(100, 'Must be 100 characters or less')
           .required('Required'),
         category: Yup.string()
-          .oneOf(todoCategory, 'Invalid category type')
+          .oneOf(
+            listCategory.map(obj => obj.text),
+            'Invalid category type'
+          )
           .required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
@@ -43,9 +45,9 @@ export default function TodoForm({ editTask, onClose }) {
         <div>
           <label className='TodoForm__Label'>Select Category:</label>
           <Field name='category' as='select' className='TodoForm__Category'>
-            {todoCategory.map(category => (
-              <option key={category} value={category}>
-                {category}
+            {listCategory.map(category => (
+              <option key={category.id} value={category.text}>
+                {category.text}
               </option>
             ))}
           </Field>

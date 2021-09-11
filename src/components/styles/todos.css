@@ -90,6 +90,8 @@
   padding: 1rem;
   width: 90%;
   word-break: break-all;
+  display: flex;
+  justify-content: space-between;
 }
 .Todos__Item-Task {
   font-size: 1.6rem;
@@ -101,11 +103,28 @@
   margin: 10px 0;
   color: #8d46bd;
 }
-.Options button {
-  background-color: rgb(86, 228, 98);
+.Options-SelectInput {
+  cursor: pointer;
   border: none;
-  outline: none;
-  margin: 0 5px;
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+.Options-SelectInput:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.Options-Actions button {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.2);
+  border: none;
+  background-color: transparent;
+  margin-right: 10px;
+}
+.Options-Actions button:hover {
+  color: rgba(0, 0, 0, 1);
 }
 
 @media screen and (min-width: 768px) {
