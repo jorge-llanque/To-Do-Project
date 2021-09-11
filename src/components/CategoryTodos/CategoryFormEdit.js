@@ -8,15 +8,15 @@ export default function CategoryFormEdit({ onClose, categoryToEdit }) {
 
   return (
     <Formik
-      initialValues={{ category: categoryToEdit }}
+      initialValues={{ text: categoryToEdit.text }}
       validationSchema={Yup.object({
-        category: Yup.string()
+        text: Yup.string()
           .max(12, 'Must be 12 characters or less')
           .required('Required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          updateCategory(values)
+          updateCategory(values, categoryToEdit.id)
           setSubmitting(false)
           onClose()
         }, 400)
@@ -25,13 +25,13 @@ export default function CategoryFormEdit({ onClose, categoryToEdit }) {
       <Form className='CategoryForm__Form'>
         <Field
           type='text'
-          name='category'
+          name='text'
           placeholder='Add category'
           className='CategoryForm__Input'
         />
-        <ErrorMessage name='category' />
+        <ErrorMessage name='text' />
         <button type='submit' className='CategoryForm__SubmitButton'>
-          Add
+          Update
         </button>
       </Form>
     </Formik>

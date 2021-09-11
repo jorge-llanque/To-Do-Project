@@ -23,11 +23,20 @@ export default function useTodos() {
       JSON.stringify([newValue, ...todoCategory])
     )
   }
-  const updateCategory = value => {
-    const newList = todoCategory.map(obj => (obj.id === value.id ? value : obj))
+  const updateCategory = (value, id) => {
+    const newList = todoCategory.map(obj =>
+      obj.id === id ? { id, ...value } : obj
+    )
     setTodoCategory(newList)
-    window.localStorage.setItem('todoCategory', newList)
+    window.localStorage.setItem('todoCategory', JSON.stringify(newList))
   }
+
+  const deleteCategory = id => {
+    const newList = todoCategory.filter(obj => obj.id !== id)
+    setTodoCategory(newList)
+    window.localStorage.setItem('todoCategory', JSON.stringify(newList))
+  }
+
   const newTask = obj => {
     addTask({ id: uuidv4(), ...obj })
   }
@@ -49,5 +58,6 @@ export default function useTodos() {
     addCategory,
     listCategory,
     updateCategory,
+    deleteCategory,
   }
 }
