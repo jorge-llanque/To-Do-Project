@@ -33,21 +33,23 @@ export default function TodoList() {
         <section className='Todos'>
           <div className='Todos__List'>
             {todoList.map(todo => (
-              <div key={todo.id} className='Todos__Item'>
-                <p className='Todos__Item-Task'>{todo.task}</p>
-                <span className='Todos__Item-Category'>{todo.category}</span>
-                <div className='Options'>
-                  <button
-                    onClick={() => setEdit({ id: todo.id, text: todo.text })}
-                  >
-                    Update
-                  </button>
-                  <button onClick={() => handleDeleteTask(todo.id)}>
-                    Remove
-                  </button>
-                  <button onClick={() => handleIsComplete(todo.id)}>
-                    Is Completed?
-                  </button>
+              <div className='Todos__Item-cover'>
+                <div key={todo.id} className='Todos__Item'>
+                  <p className='Todos__Item-Task'>{todo.task}</p>
+                  <span className='Todos__Item-Category'>{todo.category}</span>
+                  <div className='Options'>
+                    <button
+                      onClick={() => setEdit({ id: todo.id, text: todo.text })}
+                    >
+                      Update
+                    </button>
+                    <button onClick={() => handleDeleteTask(todo.id)}>
+                      Remove
+                    </button>
+                    <button onClick={() => handleIsComplete(todo.id)}>
+                      Is Completed?
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

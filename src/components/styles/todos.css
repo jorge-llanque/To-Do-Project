@@ -24,7 +24,7 @@
 .Todo__Container {
   display: flex;
   flex-direction: column;
-  column-gap: 2rem;
+  column-gap: 4rem;
   height: 95%;
 }
 .Todo__Container-Categories,
@@ -110,11 +110,22 @@
 @media screen and (min-width: 768px) {
   .Todo__Container {
     flex-direction: row;
+    justify-content: space-between;
   }
   .Todo__Container-Categories,
   .Todo__Container-Completed {
-    max-width: 30rem;
+    width: 25%;
   }
   .Todo__Container-Main {
+    width: 50%;
+  }
+  .Todos__Item-cover {
+    border: 1px solid rgba(204, 203, 203, 0.4);
+    border-radius: 1rem;
+    padding: 1rem 0;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

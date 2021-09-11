@@ -9,11 +9,14 @@
 }
 .Categories__Item {
   width: 5rem;
-  background-color: #e08cff;
+  background-color: #f5d5ff;
   border-radius: 2px;
   color: #fff;
   padding: 3px 0;
   text-align: center;
+}
+.Categories__Item-Char {
+  display: none;
 }
 .CategoryForm__Form {
   padding: 1rem;
@@ -55,8 +58,42 @@
   }
   .Categories__Item {
     border-radius: 0.5rem;
-    width: 15rem;
-    padding: 1rem 0;
+    width: auto;
+    padding: 1rem;
     font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    color: #b73ce4;
+    font-weight: 700;
+  }
+  .Categories__Item-Char {
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #fff;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    line-height: 2.5rem;
+    color: #b73ce4;
+    font-weight: 700;
+  }
+  .Categories__Item-Word {
+    margin-left: 1rem;
+  }
+  .Categories__Item-Options {
+    display: inline-block;
+    width: 5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .Categories__Item-Options button {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.2);
+    border: none;
+    background-color: transparent;
+  }
+  .Categories__Item-Options button:hover {
+    color: rgba(0, 0, 0, 0.8);
   }
 }
