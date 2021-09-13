@@ -55,10 +55,18 @@ export default function useTodos() {
   const getListTodo = window.localStorage.getItem('todoList')
     ? getFromLocalStorage('todoList')
     : todoList
+
+  const setTask = (value, id) => {
+    const newTask = todoList.map(obj =>
+      obj.id === id ? { id, ...value } : obj
+    )
+    updateTask(newTask)
+    window.localStorage.setItem('todoList', JSON.stringify(newTask))
+  }
   return {
     getListTodo,
     newTask,
-    updateTask,
+    setTask,
     removeTask,
     addCategory,
     listCategory,
