@@ -12,7 +12,8 @@ export default function ModalGlobal({ value }) {
       {(action === 'updateCategory' && (
         <CategoryFormEdit categoryToEdit={item} />
       )) ||
-        (action === 'deleteCategory' && <CategoryFormDelete item={item} />)}
+        (action === 'deleteCategory' && <CategoryFormDelete item={item} />) ||
+        (action === 'createCategory' && <CategoryForm />)}
     </Modal>
   )
 }
