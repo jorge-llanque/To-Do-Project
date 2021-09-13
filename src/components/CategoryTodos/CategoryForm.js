@@ -2,10 +2,8 @@ import React from 'react'
 import useCategories from '../../hooks/useCategories'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
-import useModal from '../../hooks/useModal'
 
-export default function CategoryForm() {
-  const { setShowModal } = useModal()
+export default function CategoryForm({ onClose }) {
   const { addCategory } = useCategories()
 
   return (
@@ -20,7 +18,7 @@ export default function CategoryForm() {
         setTimeout(() => {
           addCategory(values)
           setSubmitting(false)
-          setShowModal(false)
+          onClose()
         }, 400)
       }}
     >

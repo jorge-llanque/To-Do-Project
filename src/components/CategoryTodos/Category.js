@@ -1,19 +1,18 @@
 import React, { useState } from 'react'
 import ListCategories from './ListCategories'
 import { AddIcon } from '../../utils/Icons'
-import ModalGlobal from '../ModalGlobal'
+import CategoryForm from './CategoryForm'
 import '../styles/categories.css'
-import useModal from '../../hooks/useModal'
+import Modal from '../Modal'
 
 export default function Category() {
-  const { showModal, setShowModal } = useModal()
-  const [value, setValue] = useState({})
+  const [value, setValue] = useState(false)
 
   const handleCreateCategory = () => {
-    setShowModal(true)
-    setValue({
-      action: 'createCategory',
-    })
+    setValue(true)
+  }
+  const onClose = () => {
+    setValue(false)
   }
   return (
     <div>
@@ -22,7 +21,11 @@ export default function Category() {
         <button className='Icon' onClick={handleCreateCategory}>
           <AddIcon />
         </button>
-        {showModal && <ModalGlobal value={{ action: 'createCategory' }} />}
+        {value && (
+          <Modal onClose={onClose}>
+            <CategoryForm onClose={onClose} />
+          </Modal>
+        )}
       </header>
       <ListCategories />
     </div>

@@ -1,27 +1,28 @@
 import React, { useState } from 'react'
 import useCategories from '../../hooks/useCategories'
-import useModal from '../../hooks/useModal'
-import ModalGlobal from '../ModalGlobal'
+import Modal from '../Modal'
 import CategoryItem from './CategoryItem'
+import CategoryFormEdit from './CategoryFormEdit'
+import CategoryFormDelete from './CategoryFormDelete'
 
 function ListCategories() {
-  const { showModal, setShowModal } = useModal()
-  const [value, setValue] = useState({})
+  const [value, setValue] = useState(false)
   const { listCategories } = useCategories()
 
   const handleUpdateCategory = obj => {
-    setShowModal(true)
     setValue({
       action: 'updateCategory',
       item: obj,
     })
   }
   const handleDeleteCategory = obj => {
-    setShowModal(true)
     setValue({
       action: 'deleteCategory',
       item: obj,
     })
+  }
+  const onClose = () => {
+    setValue(false)
   }
 
   if (listCategories.length === 0) return <div>List Empty</div>
@@ -35,7 +36,16 @@ function ListCategories() {
           deleteCat={handleDeleteCategory}
         />
       ))}
-      {showModal && <ModalGlobal value={value} />}
+      {value && (
+        <Modal onClose={onClose}>
+          {(value.action === 'updateCategory' && (
+            <CategoryFormEdit categoryToEdit={value.item} onClose={onClose} />
+          )) ||
+            (value.action === 'deleteCategory' && (
+              <CategoryFormDelete item={value.item} onClose={onClose} />
+            ))}
+        </Modal>
+      )}
     </div>
   )
 }

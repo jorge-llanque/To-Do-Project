@@ -5,24 +5,27 @@ import CategoryFormDelete from './CategoryTodos/CategoryFormDelete'
 import CategoryForm from './CategoryTodos/CategoryForm'
 import TodoForm from './Todos/TodoForm'
 
-export default function ModalGlobal({ value }) {
+export default function ModalGlobal({ value, cleanValue }) {
   const { action, item } = value
   console.log(action)
 
   return (
-    <Modal>
-      {(
-        action === 'updateCategory' && (
+    <>
+      {(action === 'updateCategory' && (
+        <Modal>
           <CategoryFormEdit categoryToEdit={item} />
-        )
-      )(
-        action === 'updateCategory' && (
-          <CategoryFormEdit categoryToEdit={item} />
-        )
-      ) ||
-        (action === 'deleteCategory' && <CategoryFormDelete item={item} />) ||
-        (action === 'createCategory' && <CategoryForm />) ||
-        (action === 'createTodo' && <TodoForm />)}
-    </Modal>
+        </Modal>
+      )) ||
+        (action === 'deleteCategory' && (
+          <Modal>
+            <CategoryFormDelete item={item} />
+          </Modal>
+        )) ||
+        (action === 'createCategory' && (
+          <Modal>
+            <CategoryForm />
+          </Modal>
+        ))}
+    </>
   )
 }
