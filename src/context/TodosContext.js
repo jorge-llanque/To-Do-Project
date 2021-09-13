@@ -10,6 +10,7 @@ const initialCategories = [
 export function TodosContextProvider({ children }) {
   const { todoList, addTask, updateTask, removeTask } = useTasks()
   const [todoCategory, setTodoCategory] = useState(initialCategories)
+  const [taskCompleted, setTaskCompleted] = useState([])
   return (
     <Context.Provider
       value={{
@@ -19,6 +20,8 @@ export function TodosContextProvider({ children }) {
         removeTask,
         todoCategory,
         setTodoCategory,
+        taskCompleted,
+        setTaskCompleted,
       }}
     >
       {children}

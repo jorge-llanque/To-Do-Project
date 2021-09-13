@@ -10,6 +10,8 @@ export default function useTodos() {
     removeTask,
     todoCategory,
     setTodoCategory,
+    taskCompleted,
+    setTaskCompleted,
   } = useContext(TodosContext)
 
   const addCategory = value => {
@@ -63,14 +65,37 @@ export default function useTodos() {
     updateTask(newTask)
     window.localStorage.setItem('todoList', JSON.stringify(newTask))
   }
+
+  const deleteTask = id => {
+    removeTask(id)
+    window.localStorage.setItem(
+      'todoList',
+      JSON.stringify(todoList.filter(obj => obj.id !== id))
+    )
+  }
+
+  const addTaskCompleted = task => {
+    deleteTask(task.id)
+    setTaskCompleted(prev => [task, ...prev])
+    window.localStorage.setItem(
+      'todoCompleted',
+      JSON.stringify([task, ...taskCompleted])
+    )
+  }
+
+  const getListTodosCompleted = window.localStorage.getItem('todoCompleted')
+    ? getFromLocalStorage('todoCompleted')
+    : taskCompleted
   return {
     getListTodo,
     newTask,
     setTask,
-    removeTask,
+    deleteTask,
     addCategory,
     listCategory,
     updateCategory,
     deleteCategory,
+    addTaskCompleted,
+    getListTodosCompleted,
   }
 }

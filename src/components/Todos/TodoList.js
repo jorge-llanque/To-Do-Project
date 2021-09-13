@@ -8,9 +8,11 @@ import TodoFormEdit from './TodoFormEdit'
 import '../styles/todos.css'
 
 export default function TodoList() {
-  const { getListTodo, removeTask } = useTodos()
+  const { getListTodo, deleteTask, addTaskCompleted } = useTodos()
   const [showModalEdit, setShowModalEdit] = useState(false)
+  const [showModalRemove, setShowModalRemove] = useState(false)
   const [edit, setEdit] = useState(null)
+  const [toRemove, setToRemove] = useState(null)
 
   if (getListTodo.length === 0)
     return <div className='Todo__List'>List empty</div>
@@ -22,12 +24,17 @@ export default function TodoList() {
   const handleCloseModal = () => {
     setShowModalEdit(false)
   }
-
-  const handleDeleteTask = idTask => {
-    console.log(idTask)
-    removeTask(idTask)
+  const handleDeleteTask = task => {
+    setToRemove(task)
+    setShowModalRemove(true)
   }
-  const handleIsComplete = idTask => {}
+  const handleSubmit = id => {
+    deleteTask(id)
+    setShowModalRemove(false)
+  }
+  const handleIsComplete = task => {
+    addTaskCompleted(task)
+  }
 
   return (
     <div className='Todo__List-Container'>
@@ -49,15 +56,28 @@ export default function TodoList() {
                         />
                       </Modal>
                     )}
-                    <button onClick={() => handleDeleteTask(todo.id)}>
+                    <button onClick={() => handleDeleteTask(todo)}>
                       <RiDeleteBin4Line />
                     </button>
+                    {showModalRemove && (
+                      <Modal onClose={handleCloseModal}>
+                        <form onSubmit={() => handleSubmit(toRemove.id)}>
+                          <h4>
+                            Do you want to delete definility {toRemove.task}?
+                          </h4>
+                          <button type='button' onClick={handleCloseModal}>
+                            Cancel
+                          </button>
+                          <button type='submit'>I'm sure</button>
+                        </form>
+                      </Modal>
+                    )}
                   </div>
                   <p className='Todos__Item-Task'>{todo.task}</p>
                   <span className='Todos__Item-Category'>{todo.category}</span>
                 </div>
                 <button
-                  onClick={() => handleIsComplete(todo.id)}
+                  onClick={() => handleIsComplete(todo)}
                   className='Options-SelectInput'
                 >
                   <BsSquare />
