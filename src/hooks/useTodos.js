@@ -1,101 +1,49 @@
 import { useContext } from 'react'
 import TodosContext from '../context/TodosContext'
-import { v4 as uuidv4 } from 'uuid'
+import {
+  addId,
+  getFromLocalStorage,
+  removeItemFromList,
+  saveInLocalStorage,
+  updateItemFromList,
+} from '../utils/Methods'
 
 export default function useTodos() {
-  const {
-    todoList,
-    addTask,
-    updateTask,
-    removeTask,
-    todoCategory,
-    setTodoCategory,
-    taskCompleted,
-    setTaskCompleted,
-  } = useContext(TodosContext)
+  const { todos, setTodos, todoCompleted, setTodoCompleted } =
+    useContext(TodosContext)
 
-  const addCategory = value => {
-    const newValue = {
-      id: uuidv4(),
-      ...value,
-    }
-    setTodoCategory([newValue, ...todoCategory])
-    window.localStorage.setItem(
-      'todoCategory',
-      JSON.stringify([newValue, ...todoCategory])
-    )
+  const listTodos = getFromLocalStorage('todos') || todos
+
+  const addTodo = item => {
+    const newTodo = addId(item)
+    setTodos([newTodo, ...todos])
+    saveInLocalStorage('todos', todos, false, newTodo)
   }
-  const updateCategory = (value, id) => {
-    const newList = todoCategory.map(obj =>
-      obj.id === id ? { id, ...value } : obj
-    )
-    setTodoCategory(newList)
-    window.localStorage.setItem('todoCategory', JSON.stringify(newList))
+  const updateTodo = (item, id) => {
+    const newList = updateItemFromList({ id, ...item }, todos)
+    setTodos(newList)
+    saveInLocalStorage('todos', newList, true)
+  }
+  const removeTodo = id => {
+    const newList = removeItemFromList(id, todos)
+    setTodos(newList)
+    saveInLocalStorage('todos', newList, true)
   }
 
-  const deleteCategory = id => {
-    const newList = todoCategory.filter(obj => obj.id !== id)
-    setTodoCategory(newList)
-    window.localStorage.setItem('todoCategory', JSON.stringify(newList))
+  const addTodoCompleted = task => {
+    removeTodo(task.id)
+    setTodoCompleted(prev => [task, ...prev])
+    saveInLocalStorage('todoCompleted', todoCompleted, false, task)
   }
+  const listTodosCompleted =
+    getFromLocalStorage('todoCompleted') || todoCompleted
 
-  const getFromLocalStorage = key => {
-    // const toArray = data => data.split(',')
-    const data = window.localStorage.getItem(key)
-    console.log(JSON.parse(data))
-    return JSON.parse(data)
-  }
-  const listCategory = window.localStorage.getItem('todoCategory')
-    ? getFromLocalStorage('todoCategory')
-    : todoCategory
-
-  const newTask = obj => {
-    let task = { id: uuidv4(), ...obj }
-    addTask(task)
-    window.localStorage.setItem('todoList', JSON.stringify([task, ...todoList]))
-  }
-  const getListTodo = window.localStorage.getItem('todoList')
-    ? getFromLocalStorage('todoList')
-    : todoList
-
-  const setTask = (value, id) => {
-    const newTask = todoList.map(obj =>
-      obj.id === id ? { id, ...value } : obj
-    )
-    updateTask(newTask)
-    window.localStorage.setItem('todoList', JSON.stringify(newTask))
-  }
-
-  const deleteTask = id => {
-    removeTask(id)
-    window.localStorage.setItem(
-      'todoList',
-      JSON.stringify(todoList.filter(obj => obj.id !== id))
-    )
-  }
-
-  const addTaskCompleted = task => {
-    deleteTask(task.id)
-    setTaskCompleted(prev => [task, ...prev])
-    window.localStorage.setItem(
-      'todoCompleted',
-      JSON.stringify([task, ...taskCompleted])
-    )
-  }
-
-  const getListTodosCompleted = window.localStorage.getItem('todoCompleted')
-    ? getFromLocalStorage('todoCompleted')
-    : taskCompleted
   return {
-    getListTodo,
-    newTask,
-    setTask,
-    deleteTask,
-    addCategory,
-    listCategory,
-    updateCategory,
-    deleteCategory,
-    addTaskCompleted,
-    getListTodosCompleted,
+    addTodo,
+    listTodos,
+    updateTodo,
+    removeTodo,
+    addTodoCompleted,
+    listTodosCompleted,
   }
 }

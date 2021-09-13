@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useTodos from '../../hooks/useTodos'
+import useCategories from '../../hooks/useCategories'
 import { ImPencil2 } from 'react-icons/im'
 import { RiDeleteBin4Line } from 'react-icons/ri'
 import Modal from '../Modal'
@@ -10,7 +10,7 @@ function ListCategories() {
   const [showModalRemove, setShowModalRemove] = useState(false)
   const [toEdit, setToEdit] = useState({})
   const [toRemove, setToRemove] = useState({})
-  const { listCategory, deleteCategory } = useTodos()
+  const { listCategories, removeCategory } = useCategories()
 
   const getFirstCharacter = word => word.charAt(0)
 
@@ -26,14 +26,14 @@ function ListCategories() {
     setShowModalEdit(false)
   }
   const handleSubmit = id => {
-    deleteCategory(id)
+    removeCategory(id)
     setShowModalRemove(false)
   }
 
-  if (listCategory.length === 0) return <div>List empty</div>
+  if (listCategories.length === 0) return <div>List empty</div>
   return (
     <div className='Categories__List'>
-      {listCategory.map(category => (
+      {listCategories.map(category => (
         <div className='Categories__Item' key={category.id}>
           <div>
             <span className='Categories__Item-Char'>

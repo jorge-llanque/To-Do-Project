@@ -1,10 +1,10 @@
 import React from 'react'
-import useTodos from '../../hooks/useTodos'
+import useCategories from '../../hooks/useCategories'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
 export default function CategoryFormEdit({ onClose, categoryToEdit }) {
-  const { updateCategory } = useTodos()
+  const { updateCategory } = useCategories()
 
   return (
     <Formik

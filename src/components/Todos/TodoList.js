@@ -8,13 +8,13 @@ import TodoFormEdit from './TodoFormEdit'
 import '../styles/todos.css'
 
 export default function TodoList() {
-  const { getListTodo, deleteTask, addTaskCompleted } = useTodos()
+  const { listTodos, removeTodo, addTodoCompleted } = useTodos()
   const [showModalEdit, setShowModalEdit] = useState(false)
   const [showModalRemove, setShowModalRemove] = useState(false)
   const [edit, setEdit] = useState(null)
   const [toRemove, setToRemove] = useState(null)
 
-  if (getListTodo.length === 0)
+  if (listTodos.length === 0)
     return <div className='Todo__List'>List empty</div>
 
   const handleUpdateTask = task => {
@@ -29,18 +29,18 @@ export default function TodoList() {
     setShowModalRemove(true)
   }
   const handleSubmit = id => {
-    deleteTask(id)
+    removeTodo(id)
     setShowModalRemove(false)
   }
   const handleIsComplete = task => {
-    addTaskCompleted(task)
+    addTodoCompleted(task)
   }
 
   return (
     <div className='Todo__List-Container'>
       <section className='Todos'>
         <div className='Todos__List'>
-          {getListTodo.map(todo => (
+          {listTodos.map(todo => (
             <div key={todo.id} className='Todos__Item-cover'>
               <div className='Todos__Item'>
                 <div className='Todos__Item-Contain'>

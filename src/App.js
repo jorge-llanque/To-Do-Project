@@ -1,11 +1,14 @@
 import Todos from './components/Todos'
 import { TodosContextProvider } from './context/TodosContext'
+import { CategoriesContextProvider } from './context/CategoriesContext'
 
 function App() {
   return (
-    <TodosContextProvider>
-      <Todos />
-    </TodosContextProvider>
+    <CategoriesContextProvider>
+      <TodosContextProvider>
+        <Todos />
+      </TodosContextProvider>
+    </CategoriesContextProvider>
   )
 }
 

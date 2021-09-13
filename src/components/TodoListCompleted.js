@@ -2,7 +2,7 @@ import React from 'react'
 import useTodos from '../hooks/useTodos'
 
 function TodoListCompleted() {
-  const { getListTodosCompleted } = useTodos()
+  const { listTodosCompleted } = useTodos()
 
   return (
     <div>
@@ -10,8 +10,8 @@ function TodoListCompleted() {
         <h2>Tasks Completed</h2>
       </header>
       <div className='Todos__List'>
-        {getListTodosCompleted.length === 0 && <div>List empty</div>}
-        {getListTodosCompleted.map(todo => (
+        {listTodosCompleted.length === 0 && <div>List empty</div>}
+        {listTodosCompleted.map(todo => (
           <div key={todo.id} className='Todos__Item'>
             {todo.task}
           </div>

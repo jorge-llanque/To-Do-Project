@@ -3,9 +3,11 @@ import useTodos from '../../hooks/useTodos'
 import { ErrorMessage, Field, Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import '../styles/todos.css'
+import useCategories from '../../hooks/useCategories'
 
 export default function TodoForm({ onClose }) {
-  const { newTask, listCategory } = useTodos()
+  const { addTodo } = useTodos()
+  const { listCategories } = useCategories()
 
   return (
     <Formik
@@ -20,7 +22,7 @@ export default function TodoForm({ onClose }) {
           .required('Required'),
         category: Yup.string()
           .oneOf(
-            listCategory.map(obj => obj.text),
+            listCategories.map(obj => obj.text),
             'Invalid category type'
           )
           .required('Required'),
@@ -28,7 +30,7 @@ export default function TodoForm({ onClose }) {
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           console.log(values)
-          newTask(values)
+          addTodo(values)
           setSubmitting(false)
           onClose()
         }, 400)
@@ -45,7 +47,7 @@ export default function TodoForm({ onClose }) {
         <div>
           <label className='TodoForm__Label'>Select Category:</label>
           <Field name='category' as='select' className='TodoForm__Category'>
-            {listCategory.map(category => (
+            {listCategories.map(category => (
               <option key={category.id} value={category.text}>
                 {category.text}
               </option>
