@@ -4,10 +4,12 @@ import { ErrorMessage, Field, Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import '../styles/todos.css'
 import useCategories from '../../hooks/useCategories'
+import useModal from '../../hooks/useModal'
 
-export default function TodoForm({ onClose }) {
+export default function TodoForm() {
   const { addTodo } = useTodos()
   const { listCategories } = useCategories()
+  const { setShowModal } = useModal()
 
   return (
     <Formik
@@ -32,7 +34,7 @@ export default function TodoForm({ onClose }) {
           console.log(values)
           addTodo(values)
           setSubmitting(false)
-          onClose()
+          setShowModal(false)
         }, 400)
       }}
     >

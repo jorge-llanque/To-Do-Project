@@ -22,7 +22,7 @@ export default function Category() {
         <button className='Icon' onClick={handleCreateCategory}>
           <AddIcon />
         </button>
-        {showModal && <ModalGlobal value={value} />}
+        {showModal && <ModalGlobal value={{ action: 'createCategory' }} />}
       </header>
       <ListCategories />
     </div>
