@@ -4,7 +4,7 @@ import { DeleteIcon, UpdateIcon } from '../../utils/Icons'
 
 export default function CategoryItem({ category, updateCat, deleteCat }) {
   return (
-    <React.Fragment key={category.id}>
+    <>
       <div>
         <span className='Categories__Item-Char'>
           {getFirstChar(category.text)}
@@ -19,6 +19,6 @@ export default function CategoryItem({ category, updateCat, deleteCat }) {
           <DeleteIcon />
         </button>
       </div>
-    </React.Fragment>
+    </>
   )
 }

@@ -1,13 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import useModal from '../hooks/useModal'
 import { CloseIcon } from '../utils/Icons'
 import './styles/modal.css'
 
-function Modal({ children, onClose }) {
+function Modal({ children }) {
+  const { setShowModal } = useModal()
+
   return (
     <div className='Modal'>
       <div className='Modal__Content'>
-        <button onClick={onClose} className='CloseModalIcon Icon'>
+        <button
+          onClick={() => setShowModal(false)}
+          className='CloseModalIcon Icon'
+        >
           <CloseIcon />
         </button>
         {children}
@@ -16,9 +22,9 @@ function Modal({ children, onClose }) {
   )
 }
 
-export default function ModalPortal({ children, onClose }) {
+export default function ModalPortal({ children }) {
   return ReactDOM.createPortal(
-    <Modal onClose={onClose}>{children}</Modal>,
+    <Modal>{children}</Modal>,
     document.getElementById('main-contain')
   )
 }

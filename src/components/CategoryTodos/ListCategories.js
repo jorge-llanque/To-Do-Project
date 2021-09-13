@@ -1,59 +1,41 @@
 import React, { useState } from 'react'
 import useCategories from '../../hooks/useCategories'
-import Modal from '../Modal'
-import CategoryFormDelete from './CategoryFormDelete'
-import CategoryFormEdit from './CategoryFormEdit'
+import useModal from '../../hooks/useModal'
+import ModalGlobal from '../ModalGlobal'
 import CategoryItem from './CategoryItem'
 
 function ListCategories() {
-  const [showModal, setShowModal] = useState(false)
-  const [toEdit, setToEdit] = useState({})
-  const [toRemove, setToRemove] = useState({})
-  const { listCategories, removeCategory } = useCategories()
+  const { showModal, setShowModal } = useModal()
+  const [value, setValue] = useState({})
+  const { listCategories } = useCategories()
 
   const handleUpdateCategory = obj => {
-    setToEdit(obj)
     setShowModal(true)
+    setValue({
+      action: 'updateCategory',
+      item: obj,
+    })
   }
   const handleDeleteCategory = obj => {
-    setToRemove(obj)
     setShowModal(true)
-  }
-  const handleCloseModal = () => {
-    setShowModal(false)
-  }
-  const handleSubmit = id => {
-    removeCategory(id)
-    setShowModal(false)
+    setValue({
+      action: 'deleteCategory',
+      item: obj,
+    })
   }
 
-  if (listCategories.length === 0) return <div>List empty</div>
+  if (listCategories.length === 0) return <div>List Empty</div>
   return (
     <div className='Categories__List'>
       {listCategories.map(category => (
         <CategoryItem
+          key={category.id}
           category={category}
           updateCat={handleUpdateCategory}
           deleteCat={handleDeleteCategory}
         />
       ))}
-      {showModal && (
-        <Modal onClose={handleCloseModal}>
-          <CategoryFormEdit
-            categoryToEdit={toEdit}
-            onClose={handleCloseModal}
-          />
-        </Modal>
-      )}
-
-      {showModal && (
-        <Modal onClose={handleCloseModal}>
-          <CategoryFormDelete
-            onSubmit={() => handleSubmit(toRemove.id)}
-            onClose={handleCloseModal}
-          />
-        </Modal>
-      )}
+      {showModal && <ModalGlobal value={value} />}
     </div>
   )
 }

@@ -2,9 +2,11 @@ import React from 'react'
 import useCategories from '../../hooks/useCategories'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
+import useModal from '../../hooks/useModal'
 
-export default function CategoryFormEdit({ onClose, categoryToEdit }) {
+export default function CategoryFormEdit({ categoryToEdit }) {
   const { updateCategory } = useCategories()
+  const { setShowModal } = useModal()
 
   return (
     <Formik
@@ -18,7 +20,7 @@ export default function CategoryFormEdit({ onClose, categoryToEdit }) {
         setTimeout(() => {
           updateCategory(values, categoryToEdit.id)
           setSubmitting(false)
-          onClose()
+          setShowModal(false)
         }, 400)
       }}
     >
