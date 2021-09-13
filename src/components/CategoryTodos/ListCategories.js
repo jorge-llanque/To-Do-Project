@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import useCategories from '../../hooks/useCategories'
-import { ImPencil2 } from 'react-icons/im'
-import { RiDeleteBin4Line } from 'react-icons/ri'
+import { UpdateIcon, DeleteIcon } from '../../utils/Icons'
 import Modal from '../Modal'
 import CategoryFormEdit from './CategoryFormEdit'
 
@@ -43,7 +42,7 @@ function ListCategories() {
           </div>
           <div className='Categories__Item-Options'>
             <button onClick={() => handleUpdateCategory(category)}>
-              <ImPencil2 />
+              <UpdateIcon />
             </button>
             {showModalEdit && (
               <Modal onClose={handleCloseModal}>
@@ -54,7 +53,7 @@ function ListCategories() {
               </Modal>
             )}
             <button onClick={() => handleDeleteCategory(category)}>
-              <RiDeleteBin4Line />
+              <DeleteIcon />
               {showModalRemove && (
                 <Modal onClose={handleCloseModal}>
                   <form onSubmit={() => handleSubmit(toRemove.id)}>

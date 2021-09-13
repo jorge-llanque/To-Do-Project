@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BiPlus } from 'react-icons/bi'
+import { AddIcon } from '../../utils/Icons'
 import Modal from '../Modal'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
@@ -18,7 +18,7 @@ export default function Todo() {
       <header className='Todo__Title Title'>
         <h2>To Do</h2>
         <button onClick={handleShowModal} className='Todo__AddIcon Icon'>
-          <BiPlus />
+          <AddIcon />
         </button>
         {showModal && (
           <Modal onClose={handleCloseModal}>

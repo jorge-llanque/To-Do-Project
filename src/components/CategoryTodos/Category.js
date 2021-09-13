@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ListCategories from './ListCategories'
-import { BiPlus } from 'react-icons/bi'
+import { AddIcon } from '../../utils/Icons'
 import Modal from '../Modal'
 import '../styles/categories.css'
 import CategoryForm from './CategoryForm'
@@ -19,7 +19,7 @@ export default function Category() {
       <header className='Title'>
         <h2>Categories</h2>
         <button className='Icon' onClick={handleShowModal}>
-          <BiPlus />
+          <AddIcon />
         </button>
         {showModal && (
           <Modal onClose={handleCloseModal}>

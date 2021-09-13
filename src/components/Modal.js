@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { RiCloseFill } from 'react-icons/ri'
+import { CloseIcon } from '../utils/Icons'
 import './styles/modal.css'
 
 function Modal({ children, onClose }) {
@@ -8,7 +8,7 @@ function Modal({ children, onClose }) {
     <div className='Modal'>
       <div className='Modal__Content'>
         <button onClick={onClose} className='CloseModalIcon Icon'>
-          <RiCloseFill />
+          <CloseIcon />
         </button>
         {children}
       </div>

@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import useTodos from '../../hooks/useTodos'
 import Modal from '../Modal'
-import { BsSquare } from 'react-icons/bs'
-import { ImPencil2 } from 'react-icons/im'
-import { RiDeleteBin4Line } from 'react-icons/ri'
+import { CheckIcon, UpdateIcon, DeleteIcon } from '../../utils/Icons'
 import TodoFormEdit from './TodoFormEdit'
 import '../styles/todos.css'
 
@@ -46,7 +44,7 @@ export default function TodoList() {
                 <div className='Todos__Item-Contain'>
                   <div className='Options-Actions'>
                     <button onClick={() => handleUpdateTask(todo)}>
-                      <ImPencil2 />
+                      <UpdateIcon />
                     </button>
                     {showModalEdit && (
                       <Modal onClose={handleCloseModal}>
@@ -57,7 +55,7 @@ export default function TodoList() {
                       </Modal>
                     )}
                     <button onClick={() => handleDeleteTask(todo)}>
-                      <RiDeleteBin4Line />
+                      <DeleteIcon />
                     </button>
                     {showModalRemove && (
                       <Modal onClose={handleCloseModal}>
@@ -80,7 +78,7 @@ export default function TodoList() {
                   onClick={() => handleIsComplete(todo)}
                   className='Options-SelectInput'
                 >
-                  <BsSquare />
+                  <CheckIcon />
                 </button>
               </div>
             </div>
