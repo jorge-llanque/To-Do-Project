@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import useModal from '../../hooks/useModal'
 import { AddIcon } from '../../utils/Icons'
 import TodoList from './TodoList'
-import ModalGlobal from '../ModalGlobal'
+import Modal from '../Modal'
+import TodoForm from './TodoForm'
 
 export default function Todo() {
-  const { showModal, setShowModal } = useModal()
-  const [value, setValue] = useState({})
+  const [value, setValue] = useState(false)
 
   const handleCreateTodo = () => {
-    setShowModal(true)
     setValue({
       action: 'createTodo',
     })
+  }
+  const onClose = () => {
+    setValue(false)
   }
 
   return (
@@ -22,7 +23,11 @@ export default function Todo() {
         <button onClick={handleCreateTodo} className='Todo__AddIcon Icon'>
           <AddIcon />
         </button>
-        {showModal && <ModalGlobal value={{ action: 'createTodo' }} />}
+        {value && (
+          <Modal onClose={onClose}>
+            <TodoForm onClose={onClose} />
+          </Modal>
+        )}
       </header>
       <TodoList />
     </div>
