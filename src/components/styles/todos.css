@@ -84,7 +84,8 @@
   flex-direction: column;
   row-gap: 10px;
 }
-.Todos__Item {
+.Todos__Item,
+.Todos__Item-Completed {
   background-color: #ffec40;
   border-radius: 1rem;
   padding: 1rem;
@@ -92,6 +93,9 @@
   word-break: break-all;
   display: flex;
   justify-content: space-between;
+}
+.Todos__Item-Completed {
+  text-decoration: line-through;
 }
 .Todos__Item-Task {
   font-size: 1.6rem;

@@ -38,6 +38,12 @@ export default function useTodos() {
   const listTodosCompleted =
     getFromLocalStorage('todoCompleted') || todoCompleted
 
+  const removeTodoCompleted = value => {
+    const newList = removeItemFromList(value.id, todoCompleted)
+    setTodoCompleted(newList)
+    saveInLocalStorage('todoCompleted', newList, true)
+    addTodo(value)
+  }
   return {
     addTodo,
     listTodos,
@@ -45,5 +51,6 @@ export default function useTodos() {
     removeTodo,
     addTodoCompleted,
     listTodosCompleted,
+    removeTodoCompleted,
   }
 }

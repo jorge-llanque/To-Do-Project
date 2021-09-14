@@ -1,8 +1,13 @@
 import React from 'react'
 import useTodos from '../hooks/useTodos'
+import { CheckIcon, RedoIcon } from '../utils/Icons'
 
 function TodoListCompleted() {
-  const { listTodosCompleted } = useTodos()
+  const { listTodosCompleted, removeTodoCompleted } = useTodos()
+
+  const handleRemoveTodoCompleted = todo => {
+    removeTodoCompleted(todo)
+  }
 
   return (
     <div>
@@ -12,8 +17,12 @@ function TodoListCompleted() {
       <div className='Todos__List'>
         {listTodosCompleted.length === 0 && <div>List empty</div>}
         {listTodosCompleted.map(todo => (
-          <div key={todo.id} className='Todos__Item'>
+          <div key={todo.id} className='Todos__Item-Completed'>
+            <CheckIcon />
             {todo.task}
+            <button onClick={() => handleRemoveTodoCompleted(todo)}>
+              <RedoIcon />
+            </button>
           </div>
         ))}
       </div>
