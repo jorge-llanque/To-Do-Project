@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useCategories from '../../hooks/useCategories'
 import Modal from '../Modal'
 import CategoryItem from './CategoryItem'
 import CategoryFormEdit from './CategoryFormEdit'
 import CategoryFormDelete from './CategoryFormDelete'
 
-function ListCategories() {
+const ListCategories = () => {
   const [value, setValue] = useState(false)
   const { listCategories } = useCategories()
+
+  useEffect(() => {
+    console.log('ListCategories Render')
+  })
 
   const handleUpdateCategory = obj => {
     setValue({

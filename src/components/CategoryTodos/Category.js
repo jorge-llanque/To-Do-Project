@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ListCategories from './ListCategories'
 import { AddIcon } from '../../utils/Icons'
 import CategoryForm from './CategoryForm'
@@ -7,6 +7,10 @@ import Modal from '../Modal'
 
 export default function Category() {
   const [value, setValue] = useState(false)
+
+  useEffect(() => {
+    console.log('Category Render')
+  })
 
   const handleCreateCategory = () => {
     setValue(true)

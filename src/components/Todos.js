@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import TodoListCompleted from './TodoListCompleted'
 import Category from './CategoryTodos/Category'
 import Todo from './Todos/Todo'
 import './styles/todos.css'
 
 export default function Todos() {
+  useEffect(() => {
+    console.log('Todos Render')
+  })
   return (
     <main id='main-contain' className='Todo'>
       <header className='Todo__Header'>
         <h1>
           <strong>
-            {' '}
             Day<small>🧡😵</small>
           </strong>
         </h1>

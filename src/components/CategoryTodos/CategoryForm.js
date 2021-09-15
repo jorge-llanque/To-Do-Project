@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useCategories from '../../hooks/useCategories'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
 export default function CategoryForm({ onClose }) {
+  useEffect(() => {
+    console.log('CategoryForm Render')
+  })
   const { addCategory } = useCategories()
 
   return (

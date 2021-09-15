@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import CategoriesContext from '../context/CategoriesContext'
 import {
   addId,
@@ -11,6 +11,10 @@ import {
 
 export default function useCategories() {
   const { categories, setCategories } = useContext(CategoriesContext)
+
+  useEffect(() => {
+    console.log('useCategories Render')
+  })
 
   const listCategories = getFromLocalStorage('categories') || categories
 

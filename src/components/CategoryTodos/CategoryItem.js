@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, memo } from 'react'
 import getFirstChar from '../../utils/getFirstChar'
 import { DeleteIcon, UpdateIcon } from '../../utils/Icons'
 
-export default function CategoryItem({ category, updateCat, deleteCat }) {
+const CategoryItem = memo(({ category, updateCat, deleteCat }) => {
+  useEffect(() => {
+    console.log('CategoryItem Render')
+  })
   return (
     <>
       <div>
@@ -21,4 +24,6 @@ export default function CategoryItem({ category, updateCat, deleteCat }) {
       </div>
     </>
   )
-}
+})
+
+export default CategoryItem
